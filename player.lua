@@ -13,11 +13,11 @@ function Player:initialize()
 end
 
 function Player:__tostring()
-    return "<Player: " .. self.name .. tostring(self.is_human) .. ">"
+    return "<Player: " .. self.name .. " score = " .. tostring(self.score) .. " " .. tostring(self.is_human) .. ">"
 end
 
 function Player:update_score()
-    print("Player:update_score()")
+    -- print("Player:update_score()")
     self.score = self.score + score[self.first_car] + score[self.second_car]
-    print(self.score)
+    -- print(self.score)
 end

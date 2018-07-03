@@ -1,5 +1,6 @@
 local class = require "libs.middleclass"
 require "player"
+require "card"
 local Game = class("Game")
 
 function Game:initialize()
@@ -9,12 +10,17 @@ function Game:initialize()
     for i = 1, 6 do
         self.players[i] = Player:new()
     end
+
+    -- create deck
+    self.deck = {}
+    local temp_card = Card:new()
+    temp_card.name = "Wrong Line"
+    table.insert(self.deck, temp_card)
 end
 
 function Game:setup()
-    for i = 1, 6 do
-        print(self.players[i])
-    end
+    print "Game:setup()"
+    self:dump_players()
 end
 function Game:start()
     print "Game:start()"
@@ -23,7 +29,7 @@ function Game:start()
         self:compute_score_for_race(i)
     end
 
-    self:compute_final_score()
+    self:dump_players()
 end
 
 function Game:start_race(num_race)
@@ -37,10 +43,10 @@ function Game:compute_score_for_race(num_race)
     end
 end
 
-function Game:compute_final_score()
-    print("=== Final Score ===")
+function Game:dump_players()
+    print("=== PLAYERS ===")
     for i = 1, 6 do
-        print(self.players[i].score)
+        print(self.players[i])
     end
 end
 

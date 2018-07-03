@@ -8,4 +8,5 @@ io.write("Number of races = ", nb_races, "!\n")
 io.write("Number of players = ", nbPlayers, "!\n")
 
 TheGame.nb_races = nb_races
+TheGame:setup()
 TheGame:start()

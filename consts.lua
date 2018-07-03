@@ -1,0 +1,14 @@
+score = {}
+score[0] = 0
+score[1] = 10
+score[2] = 6
+score[3] = 4
+score[4] = 3
+score[5] = 2
+score[6] = 1
+score[7] = 0
+score[8] = 0
+score[9] = 0
+score[10] = 0
+score[11] = 0
+score[12] = 0

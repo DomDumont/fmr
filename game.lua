@@ -32,10 +32,16 @@ end
 
 function Game:compute_score_for_race(num_race)
     print("Game:compute_score_for_race(" .. num_race .. ")")
+    for i = 1, 6 do
+        self.players[i]:update_score()
+    end
 end
 
 function Game:compute_final_score()
-    print "Game:compute_final_score()"
+    print("=== Final Score ===")
+    for i = 1, 6 do
+        print(self.players[i].score)
+    end
 end
 
 TheGame = Game:new()

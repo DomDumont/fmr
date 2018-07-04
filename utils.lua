@@ -20,6 +20,20 @@ function get_number_within_limits(prompt, minValue, maxValue, defaultValue)
     return tempInput
 end
 
+function get_name_or_generate_a_random_one(prompt)
+    possiblenames = {"John", "Smith", "Paul", "Jacob", "Jackson", "Reece", "Kimberly", "Paula", "Chuck", "Ness"}
+    local chosenOne = math.random(1, #possiblenames)
+    local defaultValue = possiblenames[chosenOne]
+    table.remove(possiblenames, chosenOne)
+    io.write(prompt .. " (default " .. defaultValue .. ")")
+    local tempInput = io.read()
+    if (tempInput == "") then
+        return defaultValue
+    else
+        return tempInput
+    end
+end
+
 function shuffle(t)
     local n = #t
 

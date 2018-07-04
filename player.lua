@@ -8,12 +8,12 @@ function Player:initialize()
     self.name = ""
     self.first_car = 0
     self.second_car = 0
-    self.is_human = false
+    self.type = "off"
     self.score = 0
 end
 
 function Player:__tostring()
-    return "<Player: " .. self.name .. " score = " .. tostring(self.score) .. " " .. tostring(self.is_human) .. ">"
+    return "<Player: " .. self.name .. " score = " .. tostring(self.score) .. " " .. self.type .. ">"
 end
 
 function Player:update_score()

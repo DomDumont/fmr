@@ -26,6 +26,7 @@ end
 
 function Game:setup()
     print "Game:setup()"
+    self:shuffle_players()
     self:dump_players()
 end
 function Game:start()
@@ -56,4 +57,11 @@ function Game:dump_players()
     end
 end
 
+function Game:shuffle_players()
+    shuffle(self.players)
+    for i = 1, 6 do
+        self.players[i].first_car = i
+        self.players[i].second_car = 13 - i
+    end
+end
 TheGame = Game:new()

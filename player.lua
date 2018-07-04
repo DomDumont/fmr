@@ -13,7 +13,12 @@ function Player:initialize()
 end
 
 function Player:__tostring()
-    return "<Player: " .. self.name .. " score = " .. tostring(self.score) .. " " .. self.type .. ">"
+    return "< " ..
+        self.name ..
+            "car1=" ..
+                tostring(self.first_car) ..
+                    "car2=" ..
+                        tostring(self.second_car) .. " score = " .. tostring(self.score) .. " " .. self.type .. ">"
 end
 
 function Player:update_score()

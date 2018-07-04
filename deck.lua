@@ -13,3 +13,7 @@ end
 function Deck:shuffle()
     shuffle(self.cards)
 end
+
+function Deck:draw_card()
+    return table.remove(self.cards)
+end

@@ -1,6 +1,8 @@
 local class = require "libs.middleclass"
 require "player"
 require "card"
+require "deck"
+
 local Game = class("Game")
 
 function Game:initialize()
@@ -12,10 +14,8 @@ function Game:initialize()
     end
 
     -- create deck
-    self.deck = {}
-    local temp_card = Card:new()
-    temp_card.name = "Wrong Line"
-    table.insert(self.deck, temp_card)
+    self.deck = Deck:new()
+    self.deck:shuffle()
 end
 
 function Game:setup()

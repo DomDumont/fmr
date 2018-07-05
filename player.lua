@@ -8,21 +8,33 @@ function Player:initialize()
     self.name = ""
     self.first_car = 0
     self.second_car = 0
-    self.type = "off"
+    self.type = "off" -- off, computer or human
     self.score = 0
+    self.cards = {}
 end
 
 function Player:__tostring()
-    return "< " ..
+    local temp_string =
+        "< " ..
         self.name ..
             "car1=" ..
                 tostring(self.first_car) ..
                     "car2=" ..
-                        tostring(self.second_car) .. " score = " .. tostring(self.score) .. " " .. self.type .. ">"
+                        tostring(self.second_car) .. " score = " .. tostring(self.score) .. " " .. self.type .. ">\n"
+
+    for i = 1, #self.cards do
+        temp_string = temp_string .. tostring(i) .. "> " .. self.cards[i].name .. "\n"
+    end
+
+    return temp_string
 end
 
 function Player:update_score()
     -- print("Player:update_score()")
     self.score = self.score + score[self.first_car] + score[self.second_car]
     -- print(self.score)
+end
+
+function Player:receive_card(new_card)
+    table.insert(self.cards, new_card)
 end

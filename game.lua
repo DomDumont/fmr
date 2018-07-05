@@ -18,19 +18,15 @@ function Game:initialize()
     print(self.deck)
     self.deck:shuffle()
     print(self.deck)
-    local testcard = self.deck:draw_card()
-    print(testcard.name)
-    testcard = self.deck:draw_card()
-    if (testcard ~= nil) then
-        print(testcard.name)
-    end
 end
 
 function Game:setup()
     print "Game:setup()"
     self:shuffle_players()
     self:dump_players()
+    self:distribute_cards()
 end
+
 function Game:start()
     print "Game:start()"
     for i = 1, self.nb_races do
@@ -66,4 +62,15 @@ function Game:shuffle_players()
         self.players[i].second_car = 13 - i
     end
 end
+
+function Game:distribute_cards()
+    for i = 1, 5 do
+        for j = 1, 6 do
+            if (self.players[j].type ~= "off") then
+                self.players[j]:receive_card(self.deck:draw_card())
+            end
+        end
+    end
+end
+
 TheGame = Game:new()

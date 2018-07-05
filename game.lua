@@ -39,6 +39,11 @@ end
 
 function Game:start_race(num_race)
     print("Game:start_race(" .. num_race .. ")")
+    local first_player = self:find_first_player()
+    ask_player_to_choose_a_card(first_player)
+    -- choose a card
+    -- play card action
+    -- pick a card
 end
 
 function Game:compute_score_for_race(num_race)
@@ -73,4 +78,11 @@ function Game:distribute_cards()
     end
 end
 
+function Game:find_first_player()
+    for i = 1, 6 do
+        if ((self.players[i].first_car == 1) or (self.players[i].second_car == 1)) then
+            return self.players[i]
+        end
+    end
+end
 TheGame = Game:new()

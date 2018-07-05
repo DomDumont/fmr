@@ -34,6 +34,15 @@ function get_name_or_generate_a_random_one(prompt)
     end
 end
 
+function ask_player_to_choose_a_card(player)
+    local temp_string = "CHOOSE BETWEEN => "
+    for i = 1, #player.cards do
+        temp_string = temp_string .. tostring(i) .. "> " .. player.cards[i].name .. "\n"
+    end
+    print(temp_string)
+    local tempInput = io.read()
+end
+
 function shuffle(t)
     local n = #t
 

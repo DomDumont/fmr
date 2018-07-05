@@ -15,7 +15,9 @@ function Game:initialize()
 
     -- create deck
     self.deck = Deck:new()
+    print(self.deck)
     self.deck:shuffle()
+    print(self.deck)
     local testcard = self.deck:draw_card()
     print(testcard.name)
     testcard = self.deck:draw_card()

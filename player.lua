@@ -17,11 +17,12 @@ function Player:__tostring()
     local temp_string =
         "< " ..
         self.name ..
-            "car1=" ..
+            " car1=" ..
                 tostring(self.first_car) ..
                     "car2=" ..
                         tostring(self.second_car) .. " score = " .. tostring(self.score) .. " " .. self.type .. ">\n"
 
+    temp_string = temp_string .. "\n---- CARDS ----\n"
     for i = 1, #self.cards do
         temp_string = temp_string .. tostring(i) .. "> " .. self.cards[i].name .. "\n"
     end
@@ -36,5 +37,6 @@ function Player:update_score()
 end
 
 function Player:receive_card(new_card)
+    print("receive_card " .. new_card.name)
     table.insert(self.cards, new_card)
 end

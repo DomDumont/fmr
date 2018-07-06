@@ -35,7 +35,7 @@ function get_name_or_generate_a_random_one(prompt)
 end
 
 function ask_player_to_choose_a_card(player)
-    local temp_string = "CHOOSE BETWEEN => "
+    local temp_string = "PLAYER " .. player.name .. " " .. player.type .. " PLEASE CHOOSE BETWEEN => "
     for i = 1, #player.cards do
         temp_string = temp_string .. tostring(i) .. "> " .. player.cards[i].name .. "\n"
     end

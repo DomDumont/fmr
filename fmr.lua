@@ -10,6 +10,7 @@ io.write("Number of races = ", nb_races, "!\n")
 io.write("Number of players = ", nbPlayers, "!\n")
 
 for i = 1, nbPlayers do
+    TheGame:add_player()
     TheGame.players[i].name = get_name_or_generate_a_random_one("name for player " .. tostring(i))
     io.write("type")
     local tempInput = io.read()

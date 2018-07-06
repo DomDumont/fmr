@@ -9,9 +9,6 @@ function Game:initialize()
     print "Game:initialize()"
     self.players = {}
     self.nb_races = 0
-    for i = 1, 6 do
-        self.players[i] = Player:new()
-    end
 
     -- create deck
     self.deck = Deck:new()
@@ -23,7 +20,6 @@ end
 function Game:setup()
     print "Game:setup()"
     self:shuffle_players()
-    self:dump_players()
     self:distribute_cards()
 end
 
@@ -39,6 +35,7 @@ end
 
 function Game:start_race(num_race)
     print("Game:start_race(" .. num_race .. ")")
+    self:dump_players()
     local first_player = self:find_first_player()
     ask_player_to_choose_a_card(first_player)
     -- choose a card
@@ -62,10 +59,21 @@ end
 
 function Game:shuffle_players()
     shuffle(self.players)
+    self:add_false_players()
     for i = 1, 6 do
         self.players[i].first_car = i
         self.players[i].second_car = 13 - i
     end
+end
+
+function Game:add_false_players()
+    for i = #self.players, 6 do
+        self:add_player()
+    end
+end
+
+function Game:add_player()
+    table.insert(self.players, Player:new())
 end
 
 function Game:distribute_cards()

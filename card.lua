@@ -10,4 +10,5 @@ function Card:initialize()
 end
 
 function Card:do_action()
+    -- how am I going to do stuff here ???
 end

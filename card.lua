@@ -4,7 +4,7 @@ require "consts"
 Card = class("Card")
 
 function Card:initialize()
-    print "Card:initialize()"
+    -- print "Card:initialize()"
     self.name = ""
     self.image = ""
 end

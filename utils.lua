@@ -40,7 +40,8 @@ function ask_player_to_choose_a_card(player)
         temp_string = temp_string .. tostring(i) .. "> " .. player.cards[i].name .. "\n"
     end
     print(temp_string)
-    local tempInput = io.read()
+    local tempIndex = io.read()
+    return tempIndex
 end
 
 function shuffle(t)

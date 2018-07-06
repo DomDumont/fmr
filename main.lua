@@ -1,3 +1,4 @@
+require("libs.ui.gui")
 local utf8 = require("utf8")
 
 function love.load(args)
@@ -5,6 +6,8 @@ function love.load(args)
 
     -- enable key repeat so backspace can be held down to trigger love.keypressed multiple times.
     love.keyboard.setKeyRepeat(true)
+
+    TheGUI:create_button("Play", 0, 0, 150, 50)
 end
 
 function love.textinput(t)
@@ -26,4 +29,5 @@ end
 
 function love.draw()
     love.graphics.printf(text, 0, 0, love.graphics.getWidth())
+    TheGUI:draw()
 end

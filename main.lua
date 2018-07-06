@@ -8,6 +8,7 @@ function love.load(args)
     love.keyboard.setKeyRepeat(true)
 
     TheGUI:create_button("Play", 0, 0, 150, 50)
+    TheGUI:create_label("How many races in session ? ", 0, 200, 250, 50)
 end
 
 function love.textinput(t)

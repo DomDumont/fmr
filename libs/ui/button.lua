@@ -1,10 +1,7 @@
--- class table
-
--- local Button = {text = "button", x = 0, y = 0, width = 0, height = 0, hasFocus = false, isHit = false, onGetFocus = nil}
-
 local class = require "libs.middleclass"
+require "libs.ui.widget"
 
-Button = class("Button")
+Button = class("Button", Widget)
 
 function Button:initialize()
     self.text = "button"
@@ -19,39 +16,6 @@ end
 
 function Button:set_text(new_value)
     self.text = new_value
-end
-
-function Button:check_collision()
-    self.isHit = false
-
-    local mouseX = love.mouse.getX()
-    local mouseY = love.mouse.getY()
-    if (mouseX > self.x and mouseX < self.x + self.width and mouseY > self.y and mouseY < self.y + self.height) then
-        if (self.hasFocus == false) then
-            self.hasFocus = true
-            if (self.onGetFocus ~= nil) then
-                self.onGetFocus()
-            end
-        end
-
-        if love.mouse.isDown(1) then
-            self.isHit = true
-            if (self.onClicked ~= nil) then
-                self.onClicked()
-            end
-        end
-    else
-        self.hasFocus = false
-    end
-end
-
-function Button:set_position(x, y)
-    self.x, self.y = x, y
-end
-
-function Button:set_size(w, h)
-    self.width = w
-    self.height = h
 end
 
 function Button:draw()

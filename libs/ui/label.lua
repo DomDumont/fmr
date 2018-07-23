@@ -3,7 +3,7 @@ require "libs.ui.widget"
 Label = class("Label", Widget)
 
 function Label:initialize()
-    self.name = ""
+    self.text = "Label"
 end
 
 function Label:set_text(new_value)
@@ -11,8 +11,6 @@ function Label:set_text(new_value)
 end
 
 function Label:draw()
-    if (self.hasFocus == true) then
-        love.graphics.setColor(0.0, 1.0, 0.0)
-    end
+    Widget.draw(self)
     love.graphics.printf(self.text, self.x, self.y, self.width)
 end

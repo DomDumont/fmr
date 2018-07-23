@@ -1,6 +1,12 @@
 require("libs.ui.gui")
 local utf8 = require("utf8")
 
+-- zerobrane debugging
+  if arg[#arg] == "-debug" then
+    require("mobdebug").start()
+  end
+  
+  
 function love.load(args)
     text = "Type away! -- "
 

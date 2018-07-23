@@ -45,6 +45,9 @@ function Widget:check_collision()
     end
 end
 
+function Widget:has_focus()
+    return self.hasFocus
+end
 function Widget:draw()
     if (self.hasFocus == true) then
         love.graphics.setColor(0.0, 1.0, 0.0)

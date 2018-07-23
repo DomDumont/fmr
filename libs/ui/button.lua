@@ -13,8 +13,8 @@ function Button:set_text(new_value)
 end
 
 function Button:draw()
-    Widget.draw(self)
     love.graphics.push("all")
+    Widget.draw(self)
     love.graphics.rectangle("line", self.x, self.y, self.width, self.height, 4)
     font = love.graphics.getFont()
     local yAdjustementForText = (self.height - font:getHeight()) / 2

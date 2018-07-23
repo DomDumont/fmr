@@ -53,3 +53,6 @@ function Widget:draw()
         love.graphics.setColor(0.0, 1.0, 0.0)
     end
 end
+
+function Widget:textinput(t)
+end

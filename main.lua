@@ -2,11 +2,10 @@ require("libs.ui.gui")
 local utf8 = require("utf8")
 
 -- zerobrane debugging
-  if arg[#arg] == "-debug" then
+if arg[#arg] == "-debug" then
     require("mobdebug").start()
-  end
-  
-  
+end
+
 function love.load(args)
     text = "Type away! -- "
 
@@ -15,10 +14,12 @@ function love.load(args)
 
     TheGUI:create_button("Play", 0, 0, 150, 50)
     TheGUI:create_label("How many races in session ? ", 0, 200, 250, 50)
+    TheGUI:create_textbox("Textbox ", 0, 400, 250, 50)
 end
 
 function love.textinput(t)
-    text = text .. t
+    TheGUI:textinput(t)
+    -- text = text .. t
 end
 
 function love.keypressed(key)
@@ -35,6 +36,6 @@ function love.keypressed(key)
 end
 
 function love.draw()
-    love.graphics.printf(text, 0, 0, love.graphics.getWidth())
+    -- love.graphics.printf(text, 0, 0, love.graphics.getWidth())
     TheGUI:draw()
 end

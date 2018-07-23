@@ -56,3 +56,7 @@ end
 
 function Widget:textinput(t)
 end
+
+function Widget:keypressed(key)
+    print("base keypressed " .. key)
+end

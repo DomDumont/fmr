@@ -1,5 +1,5 @@
 require("libs.ui.gui")
-local utf8 = require("utf8")
+require("libs.scene_manager")
 
 -- zerobrane debugging
 if arg[#arg] == "-debug" then
@@ -7,14 +7,14 @@ if arg[#arg] == "-debug" then
 end
 
 function love.load(args)
-    text = "Type away! -- "
-
     -- enable key repeat so backspace can be held down to trigger love.keypressed multiple times.
     love.keyboard.setKeyRepeat(true)
 
     TheGUI:create_button("Play", 0, 0, 150, 50)
-    TheGUI:create_label("How many races in session ? ", 0, 200, 250, 50)
-    TheGUI:create_textbox("Textbox ", 0, 400, 250, 50)
+    TheGUI:create_label("How many races in session ? ", 0, 200, 250, 25)
+    TheGUI:create_textbox("Textbox  1", 300, 200, 250, 25)
+    TheGUI:create_label("How many players ? ", 0, 300, 250, 25)
+    TheGUI:create_textbox("Textbox  2", 300, 300, 250, 25)
 end
 
 function love.textinput(t)
@@ -23,14 +23,15 @@ function love.textinput(t)
 end
 
 function love.keypressed(key)
-    if key == "backspace" then
-        -- get the byte offset to the last UTF-8 character in the string.
-        local byteoffset = utf8.offset(text, -1)
+    TheGUI:keypressed(key)
+    TheSceneManager:keypressed(key)
 
-        if byteoffset then
-            -- remove the last UTF-8 character.
-            -- string.sub operates on bytes rather than UTF-8 characters, so we couldn't do string.sub(text, 1, -2).
-            text = string.sub(text, 1, byteoffset - 1)
+    if key == "f" then
+        local fullscreen, fstype = love.window.getFullscreen()
+        if fullscreen == false then
+            love.window.setFullscreen(true, "desktop")
+        else
+            love.window.setFullscreen(false)
         end
     end
 end

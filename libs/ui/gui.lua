@@ -24,7 +24,17 @@ end
 
 function GUI:textinput(t)
     for k in pairs(self.widgets) do
-        self.widgets[k]:textinput(t)
+        if (self.widgets[k]:has_focus() == true) then
+            self.widgets[k]:textinput(t)
+        end
+    end
+end
+
+function GUI:keypressed(key)
+    for k in pairs(self.widgets) do
+        if (self.widgets[k]:has_focus() == true) then
+            self.widgets[k]:keypressed(key)
+        end
     end
 end
 

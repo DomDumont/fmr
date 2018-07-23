@@ -1,4 +1,6 @@
 local class = require "libs.middleclass"
+local utf8 = require("utf8")
+
 require "libs.ui.widget"
 
 Textbox = class("Textbox", Widget)
@@ -21,7 +23,19 @@ function Textbox:draw()
 end
 
 function Textbox:textinput(t)
-    if (self.hasFocus == true) then
-        self.text = self.text .. t
+    self.text = self.text .. t
+end
+
+function Textbox:keypressed(key)
+    if key == "backspace" then
+        print "backspace"
+        -- get the byte offset to the last UTF-8 character in the string.
+        local byteoffset = utf8.offset(self.text, -1)
+
+        if byteoffset then
+            -- remove the last UTF-8 character.
+            -- string.sub operates on bytes rather than UTF-8 characters, so we couldn't do string.sub(text, 1, -2).
+            self.text = string.sub(self.text, 1, byteoffset - 1)
+        end
     end
 end

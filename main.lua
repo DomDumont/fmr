@@ -12,9 +12,11 @@ function love.load(args)
 
     TheGUI:create_button("Play", 0, 0, 150, 50)
     TheGUI:create_label("How many races in session ? ", 0, 200, 250, 25)
-    TheGUI:create_textbox("Textbox  1", 300, 200, 250, 25)
+    TheGUI:create_textbox("Textbox  10", 349, 233, 250, 25)
     TheGUI:create_label("How many players ? ", 0, 300, 250, 25)
     TheGUI:create_textbox("Textbox  2", 300, 300, 250, 25)
+
+    TheSceneManager:push_scene(require("scenes/menuscene"))
 end
 
 function love.textinput(t)

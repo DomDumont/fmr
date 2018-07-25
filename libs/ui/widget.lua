@@ -22,8 +22,6 @@ function Widget:set_size(w, h)
 end
 
 function Widget:check_collision()
-    self.isHit = false
-
     local mouseX = love.mouse.getX()
     local mouseY = love.mouse.getY()
     if (mouseX > self.x and mouseX < self.x + self.width and mouseY > self.y and mouseY < self.y + self.height) then
@@ -35,10 +33,12 @@ function Widget:check_collision()
         end
 
         if love.mouse.isDown(1) then
-            self.isHit = true
-            if (self.onClicked ~= nil) then
+            if (self.onClicked ~= nil and self.isHit == false) then
+                self.isHit = true
                 self.onClicked()
             end
+        else
+            self.isHit = false
         end
     else
         self.hasFocus = false

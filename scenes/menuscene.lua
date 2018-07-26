@@ -12,10 +12,10 @@ end
 function MenuScene:on_scene_enter()
     TheGUI:clear()
 
-    TheGUI:create_label("How many races in session ? ", 0, C_ROW_1_Y, 250, 25)
-    TheGUI:create_textbox("Textbox  10", 350, C_ROW_1_Y, 250, 25)
-    TheGUI:create_label("How many players ? ", 0, C_ROW_2_Y, 250, 25)
-    TheGUI:create_textbox("Textbox  2", 350, C_ROW_2_Y, 250, 25)
+    TheGUI:create_label("How many races in session ? ", 200, C_ROW_1_Y, 250, 25)
+    TheGUI:create_textbox("Textbox  10", 450, C_ROW_1_Y, 250, 25)
+    TheGUI:create_label("How many players ? ", 200, C_ROW_2_Y, 250, 25)
+    TheGUI:create_textbox("Textbox  2", 450, C_ROW_2_Y, 250, 25)
 
     self.playButton = TheGUI:create_button("Play", 512 - 75, 700, 150, 50)
     self.playButton.onClicked = function()

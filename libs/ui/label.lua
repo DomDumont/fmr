@@ -14,7 +14,8 @@ end
 function Label:draw()
     love.graphics.push("all")
     Widget.draw(self)
-    love.graphics.rectangle("line", self.x, self.y, self.width, self.height, 1)
+    -- todo debug only 
+    -- love.graphics.rectangle("line", self.x, self.y, self.width, self.height, 1)
     love.graphics.printf(self.text, self.x, self.y, self.width)
     love.graphics.pop()
 end

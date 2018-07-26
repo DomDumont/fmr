@@ -89,15 +89,32 @@ function GUI:clear_focus()
 end
 
 function GUI:cycle_focus()
-    local currentFocus = self:get_focused_widget()
+    local currentFocusOrder = self:get_focused_widget_order()
+    local nextWidget = self:get_widget_with_tab_order(currentFocusOrder + 1)
+    if (nextWidget == nil) then
+        nextWidget = self:get_widget_with_tab_order(0)
+        assert(nextWidget)
+    end
+    TheGUI:clear_focus()
+    nextWidget:set_focus(true)
 end
 
-function GUI:get_focused_widget()
+function GUI:get_focused_widget_order()
     for k in pairs(self.widgets) do
         if (self.widgets[k]:has_focus()) then
+            return self.widgets[k].tabOrder
+        end
+    end
+    return -1 -- no focused widget
+end
+
+function GUI:get_widget_with_tab_order(value)
+    for k in pairs(self.widgets) do
+        if (self.widgets[k].tabOrder == value) then
             return self.widgets[k]
         end
     end
+    return nil
 end
 
 function GUI:add_widget(new_widget)

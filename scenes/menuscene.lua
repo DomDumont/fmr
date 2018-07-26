@@ -6,6 +6,7 @@ require "libs.scene"
 local MenuScene = class("MenuScene", Scene)
 local C_ROW_1_Y = 200
 local C_ROW_2_Y = 300
+
 function MenuScene:initialize(sweetness)
 end
 
@@ -14,6 +15,7 @@ function MenuScene:on_scene_enter()
 
     TheGUI:create_label("How many races in session ? ", 200, C_ROW_1_Y, 250, 25)
     TheGUI:create_textbox("Textbox  10", 450, C_ROW_1_Y, 250, 25)
+    TheGUI:create_slider("Slider", 600, C_ROW_1_Y, 250, 25)
     TheGUI:create_label("How many players ? ", 200, C_ROW_2_Y, 250, 25)
     TheGUI:create_textbox("Textbox  2", 450, C_ROW_2_Y, 250, 25)
 

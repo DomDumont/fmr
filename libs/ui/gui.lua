@@ -3,6 +3,7 @@ local BASE = (...):match("(.-)[^%.]+$")
 require(BASE .. "button")
 require(BASE .. "label")
 require(BASE .. "textbox")
+require(BASE .. "slider")
 
 local GUI = class("GUI")
 
@@ -72,6 +73,15 @@ function GUI:create_textbox(text, x, y, w, h)
     tempTextbox:set_size(w, h)
     GUI.add_widget(self, tempTextbox)
     return tempTextbox
+end
+
+function GUI:create_slider(text, x, y, w, h)
+    local tempSlider = Slider:new()
+    tempSlider:set_text(text)
+    tempSlider:set_position(x, y)
+    tempSlider:set_size(w, h)
+    GUI.add_widget(self, tempSlider)
+    return tempSlider
 end
 
 function GUI:clear()

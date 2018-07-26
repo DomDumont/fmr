@@ -36,6 +36,10 @@ function GUI:textinput(t)
 end
 
 function GUI:keypressed(key)
+    if (key == "tab") then
+        print("GUI key = " .. key)
+        TheGUI:cycle_focus()
+    end
     for k in pairs(self.widgets) do
         if (self.widgets[k]:has_focus() == true) then
             self.widgets[k]:keypressed(key)
@@ -77,10 +81,31 @@ function GUI:clear()
     self.widgets = {}
 end
 
+function GUI:clear_focus()
+    print("clear_focus")
+    for k in pairs(self.widgets) do
+        self.widgets[k]:set_focus(false)
+    end
+end
+
+function GUI:cycle_focus()
+    local currentFocus = self:get_focused_widget()
+end
+
+function GUI:get_focused_widget()
+    for k in pairs(self.widgets) do
+        if (self.widgets[k]:has_focus()) then
+            return self.widgets[k]
+        end
+    end
+end
+
 function GUI:add_widget(new_widget)
     if #self.widgets == 0 then
-        new_widget:set_focus()
+        new_widget:set_focus(true)
     end
+    new_widget:set_tab_order(#self.widgets)
     table.insert(self.widgets, new_widget)
 end
+
 TheGUI = GUI:new()

@@ -3,6 +3,7 @@ require "libs.ui.widget"
 Label = class("Label", Widget)
 
 function Label:initialize()
+    Widget.initialize(self)
     self.text = "Label"
 end
 

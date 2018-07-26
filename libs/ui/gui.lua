@@ -48,7 +48,7 @@ function GUI:create_button(text, x, y, w, h)
     tempButton:set_text(text)
     tempButton:set_position(x, y)
     tempButton:set_size(w, h)
-    table.insert(self.widgets, tempButton)
+    GUI.add_widget(self, tempButton)
     return tempButton
 end
 
@@ -57,7 +57,7 @@ function GUI:create_label(text, x, y, w, h)
     tempLabel:set_text(text)
     tempLabel:set_position(x, y)
     tempLabel:set_size(w, h)
-    table.insert(self.widgets, tempLabel)
+    GUI.add_widget(self, tempLabel)
     return tempLabel
 end
 
@@ -66,7 +66,7 @@ function GUI:create_textbox(text, x, y, w, h)
     tempTextbox:set_text(text)
     tempTextbox:set_position(x, y)
     tempTextbox:set_size(w, h)
-    table.insert(self.widgets, tempTextbox)
+    GUI.add_widget(self, tempTextbox)
     return tempTextbox
 end
 
@@ -75,5 +75,12 @@ function GUI:clear()
         self.widgets[k] = nil
     end
     self.widgets = {}
+end
+
+function GUI:add_widget(new_widget)
+    if #self.widgets == 0 then
+        new_widget:set_focus()
+    end
+    table.insert(self.widgets, new_widget)
 end
 TheGUI = GUI:new()

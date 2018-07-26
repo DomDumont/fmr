@@ -10,6 +10,7 @@ function Widget:initialize()
     self.hasFocus = false
     self.isHit = false
     self.onGetFocus = nil
+    self.thename = "unnamed"
 end
 
 function Widget:set_position(x, y)
@@ -41,8 +42,13 @@ function Widget:check_collision()
             self.isHit = false
         end
     else
-        self.hasFocus = false
+        -- self.hasFocus = false
     end
+end
+
+function Widget:set_focus()
+    print("set_focus on " .. self.thename)
+    self.hasFocus = true
 end
 
 function Widget:has_focus()

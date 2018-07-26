@@ -20,6 +20,11 @@ function GUI:draw()
     end
 
     love.graphics.pop()
+
+    if (self.must_clear == true) then
+        self.must_clear = false
+        GUI.internal_clear(self)
+    end
 end
 
 function GUI:textinput(t)
@@ -65,4 +70,14 @@ function GUI:create_textbox(text, x, y, w, h)
     return tempTextbox
 end
 
+function GUI:clear()
+    self.must_clear = true
+end
+
+function GUI:internal_clear()
+    for k in pairs(self.widgets) do
+        self.widgets[k] = nil
+    end
+    self.widgets = {}
+end
 TheGUI = GUI:new()

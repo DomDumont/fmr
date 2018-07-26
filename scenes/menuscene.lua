@@ -10,7 +10,7 @@ function MenuScene:initialize(sweetness)
 end
 
 function MenuScene:on_scene_enter()
-    print("MenuScene on_scene_enter")
+    TheGUI:clear()
 
     TheGUI:create_label("How many races in session ? ", 0, C_ROW_1_Y, 250, 25)
     TheGUI:create_textbox("Textbox  10", 350, C_ROW_1_Y, 250, 25)
@@ -27,4 +27,11 @@ end
 function MenuScene:draw()
     Scene.draw(self) -- call base method
 end
+
+function MenuScene:keypressed(key)
+    if key == "escape" then
+        love.event.push("quit")
+    end
+end
+
 return MenuScene:new()

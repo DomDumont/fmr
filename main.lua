@@ -31,6 +31,9 @@ function love.keypressed(key)
         end
     end
 end
+function love.update(dt)
+    TheSceneManager:update(dt)
+end
 
 function love.draw()
     -- love.graphics.clear(0.1, 0.2, 0.25)

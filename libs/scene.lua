@@ -13,5 +13,11 @@ end
 function Scene:keypressed(key)
 end
 
+function Scene:update(dt)
+    TheGUI:update(dt)
+end
+
 function Scene:draw()
+    love.graphics.clear(0.1, 0.2, 0.25)
+    TheGUI:draw()
 end

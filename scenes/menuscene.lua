@@ -18,6 +18,7 @@ function MenuScene:on_scene_enter()
     TheGUI:create_slider("Slider", 200, 250, 250, 25)
     TheGUI:create_label("How many players ? ", 200, C_ROW_2_Y, 250, 25)
     TheGUI:create_textbox("Textbox  2", 450, C_ROW_2_Y, 250, 25)
+    TheGUI:create_slider("Slider", 200, 350, 250, 25)
 
     self.playButton = TheGUI:create_button("Play", 512 - 75, 700, 150, 50)
     self.playButton.onClicked = function()

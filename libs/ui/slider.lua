@@ -8,9 +8,10 @@ function Slider:initialize()
     self.min = 0
     self.max = 100
     self.value = 30
+    self.nbTicks = 10
     self.cursorX = self.x + 10
     self.cursorY = self.y - 10
-    self.cursorW = 40
+    self.cursorW = 10
     self.cursorH = self.height + 10
     self.dragging = false
 end
@@ -36,7 +37,15 @@ function Slider:draw()
     -- todo debug only
     -- love.graphics.setColor(1.0, 1.0, 0.0)
     love.graphics.rectangle("fill", self.x, self.y, self.width, 10, 1)
+    -- cursor
     love.graphics.rectangle("fill", self.cursorX, self.cursorY, self.cursorW, self.cursorH, 1)
+
+    local stepWidth = self.width / (self.nbTicks - 1)
+    local titi = self.x
+    for toto = 1, (self.nbTicks), 1 do
+        love.graphics.line(titi, self.y - 5, titi, self.y + 15)
+        titi = titi + stepWidth
+    end
     love.graphics.pop()
 end
 
@@ -45,6 +54,7 @@ function Slider:check_collision()
     -- Widget.check_collision(self)
 
     if not love.mouse.isDown(1) then
+        -- snapping to be done
         self.dragging = false
     end
 

@@ -8,12 +8,13 @@ function Slider:initialize()
     self.min = 0
     self.max = 100
     self.value = 30
-    self.nbTicks = 10
+    self.nbTicks = 4
     self.cursorX = self.x + 10
     self.cursorY = self.y - 10
     self.cursorW = 10
     self.cursorH = self.height + 10
     self.dragging = false
+    self.stepWidth = 0.0
 end
 
 function Slider:set_position(x, y)
@@ -25,6 +26,7 @@ end
 function Slider:set_size(w, h)
     Widget.set_size(self, w, h)
     self.cursorH = self.height + 10
+    self.stepWidth = self.width / (self.nbTicks - 1)
 end
 
 function Slider:set_text(new_value)
@@ -40,11 +42,10 @@ function Slider:draw()
     -- cursor
     love.graphics.rectangle("fill", self.cursorX, self.cursorY, self.cursorW, self.cursorH, 1)
 
-    local stepWidth = self.width / (self.nbTicks - 1)
     local titi = self.x
     for toto = 1, (self.nbTicks), 1 do
         love.graphics.line(titi, self.y - 5, titi, self.y + 15)
-        titi = titi + stepWidth
+        titi = titi + self.stepWidth
     end
     love.graphics.pop()
 end
@@ -53,13 +54,14 @@ end
 function Slider:check_collision()
     -- Widget.check_collision(self)
 
+    local mouseX = love.mouse.getX()
+    local mouseY = love.mouse.getY()
+
     if not love.mouse.isDown(1) then
-        -- snapping to be done
+        -- TODO snap
         self.dragging = false
     end
 
-    local mouseX = love.mouse.getX()
-    local mouseY = love.mouse.getY()
     if
         (mouseX > self.cursorX and mouseX < self.cursorX + self.cursorW and mouseY > self.cursorY and
             mouseY < self.cursorY + self.cursorH)
@@ -74,7 +76,13 @@ function Slider:check_collision()
     end
 
     if (self.dragging) then
-        self.cursorX = love.mouse.getX() - (self.cursorW / 2)
+        --self.cursorX = mouseX - (self.cursorW / 2)
+
+        local deltaX = mouseX - self.x
+        local nbSteps = math.floor(deltaX / self.stepWidth)
+        print(nbSteps)
+        self.cursorX = self.x + (nbSteps * self.stepWidth)
+
         if (self.cursorX < self.x) then
             self.cursorX = self.x
         end

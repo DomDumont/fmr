@@ -5,16 +5,17 @@ Slider = class("Slider", Widget)
 function Slider:initialize()
     Widget.initialize(self)
     self.text = "Slider"
-    self.min = 0
-    self.max = 100
-    self.value = 30
-    self.nbTicks = 4
+    self.minValue = 0
+    self.maxValue = 100
+    self.value = 0
+    self.nbTicks = 11
     self.cursorX = self.x + 10
     self.cursorY = self.y - 10
     self.cursorW = 10
     self.cursorH = self.height + 10
     self.dragging = false
     self.stepWidth = 0.0
+    self.stepValue = 10.0
 end
 
 function Slider:set_position(x, y)
@@ -29,6 +30,27 @@ function Slider:set_size(w, h)
     self.stepWidth = self.width / (self.nbTicks - 1)
 end
 
+function Slider:set_nb_ticks(new_value)
+    self.nbTicks = new_value + 1
+    self.stepWidth = self.width / (self.nbTicks - 1)
+    self.stepValue = (self.maxValue - self.minValue) / (self.nbTicks - 1)
+end
+
+function Slider:set_min_value(new_value)
+    self.minValue = new_value
+    self.stepValue = (self.maxValue - self.minValue) / (self.nbTicks - 1)
+end
+
+function Slider:set_max_value(new_value)
+    self.maxValue = new_value
+    self.stepValue = (self.maxValue - self.minValue) / (self.nbTicks - 1)
+end
+
+function Slider:set_value(new_value)
+    self.cursorX = self.x + new_value * self.stepWidth
+    self.value = self.minValue + new_value * self.stepValue
+end
+
 function Slider:set_text(new_value)
     self.text = new_value
 end
@@ -41,6 +63,8 @@ function Slider:draw()
     love.graphics.rectangle("fill", self.x, self.y, self.width, 10, 1)
     -- cursor
     love.graphics.rectangle("fill", self.cursorX, self.cursorY, self.cursorW, self.cursorH, 1)
+
+    love.graphics.printf(self.value, self.x, self.y - 25, self.width)
 
     local titi = self.x
     for toto = 1, (self.nbTicks), 1 do
@@ -81,13 +105,16 @@ function Slider:check_collision()
         local deltaX = mouseX - self.x
         local nbSteps = math.floor(deltaX / self.stepWidth)
         print(nbSteps)
+        self.value = self.minValue + nbSteps * self.stepValue
         self.cursorX = self.x + (nbSteps * self.stepWidth)
 
         if (self.cursorX < self.x) then
             self.cursorX = self.x
+            self.value = self.minValue
         end
         if (self.cursorX > self.x + self.width) then
             self.cursorX = self.x + self.width
+            self.value = self.maxValue
         end
     end
 end

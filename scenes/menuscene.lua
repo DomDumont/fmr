@@ -23,7 +23,6 @@ function MenuScene:on_scene_enter()
     self.sliderRaces:set_value(1)
 
     TheGUI:create_label("How many players ? ", 200, C_ROW_2_Y, 250, 25)
-    -- TheGUI:create_textbox("Textbox  2", 450, C_ROW_2_Y, 250, 25)
     self.sliderPlayers = TheGUI:create_slider("SliderPlayers", 200, 350, 250, 25)
     self.sliderPlayers:set_min_value(3)
     self.sliderPlayers:set_max_value(6)
@@ -43,6 +42,9 @@ function MenuScene:on_scene_enter()
             self.currentColor = 1
         end
     end
+
+    TheGUI:create_label("Your name: ", 200, 600, 250, 25)
+    TheGUI:create_textbox("Toto", 450, 600, 250, 25)
 
     self.currentColor = 1
 end

@@ -32,7 +32,7 @@ function MenuScene:on_scene_enter()
     self.playButton = TheGUI:create_button("Play", 512 - 75, 700, 150, 50)
     self.playButton.onClicked = function()
         print("pouet pouet 2")
-        TheSceneManager:push_scene(require("scenes/gamescene"))
+        TheSceneManager:push_scene(require("scenes/game/setupscene"))
     end
 
     self.changeColorButton = TheGUI:create_button("Change Color", 200, 500, 150, 50)

@@ -57,3 +57,24 @@ function shuffle(t)
 
     return t
 end
+
+function my_scene_color(colorName)
+    print(colorName)
+    if colorName == "red" then
+        love.graphics.setColor(1, 0, 0, 1)
+    elseif colorName == "green" then
+        love.graphics.setColor(0, 1, 0, 1)
+    elseif colorName == "blue" then
+        love.graphics.setColor(0, 0, 1, 1)
+    elseif colorName == "orange" then
+        love.graphics.setColor(1, 0.65, 0, 1)
+    elseif colorName == "yellow" then
+        love.graphics.setColor(1, 1, 0, 1)
+    elseif colorName == "purple" then
+        love.graphics.setColor(0.93, 0.50, 0.93, 1)
+    elseif colorName == "white" then
+        love.graphics.setColor(1, 1, 1, 1)
+    else
+        love.graphics.setColor(1, 1, 1, 1)
+    end
+end
